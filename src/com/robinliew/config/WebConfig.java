@@ -38,6 +38,6 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	 * @param configurer
 	 */
 	public void configureDedfaultServletHandling(DefaultServletHandlerConfigurer configurer){
-		
+		configurer.enable();
 	}
 }
