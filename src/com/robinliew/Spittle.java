@@ -1,6 +1,8 @@
 package com.robinliew;
 
-import java.sql.Date;
+import java.util.Date;
+
+
 
 /**
  * Spittle就是一个基本的POJO数据对象
