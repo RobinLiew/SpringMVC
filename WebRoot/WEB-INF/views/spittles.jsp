@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% 
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
@@ -7,9 +8,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <base href="<%=basePath%>">
     
-    <title>home</title>
+    
+    <title>spittles</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -19,12 +20,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	
+
   </head>
   
   <body>
-    <h1>欢迎浏览我的页面</h1>
-    <a href="/">登录</a>
-    <a>注册</a>
+    <c:forEach items="${spittleList}" var="spittle" >
+    	<li id="spittle_<c:out value="spittle.id"/>" />
+    		<div class="spittleMessage">
+    			<c:out value="${spittle.message}" />
+    		</div>
+    		<div>
+    			<span class="spittleTime">
+    				<c:out value="${spittle.time}" />
+    			</span>
+    			<span class="spittleLocation">
+    				(<c:out value="${spittle.latitude}" />,<c:out value="${spittle.longitude}" />)
+    			</span>
+    		</div>
+    	</li>
+    </c:forEach>
   </body>
 </html>

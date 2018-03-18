@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -9,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>home</title>
+    <title>My JSP 'profile.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -19,12 +20,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	
+
   </head>
   
   <body>
-    <h1>欢迎浏览我的页面</h1>
-    <a href="/">登录</a>
-    <a>注册</a>
+    <h1>My Profile</h1>
+    <c:out value="${spitter.username}"></c:out><br/>
+    <c:out value="${spitter.firstName}"></c:out>
+    <c:out value="${spitter.lastName}"></c:out>
   </body>
 </html>
