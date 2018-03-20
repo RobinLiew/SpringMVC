@@ -4,6 +4,7 @@ import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration.Dynamic;
 
+import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.robinliew.filter.MyFilter;
@@ -50,8 +51,15 @@ public class SpittrWebAppInitializer extends
 	 */
 	@Override
 	protected void customizeRegistration(Dynamic registration) {
+		/*假设我们想限制文件的大小不超过2MB，整个请求不超过4MB，而且所有的文件都要写到磁盘中*/
 		registration.setMultipartConfig(
-				new MultipartConfigElement("/tmp/spittr/uploads"));//将上传文件的临时存储目录设置在"/tmp/spittr/uploads"中。
+				new MultipartConfigElement("/tmp/spittr/uploads",2097152,4194304,0));//将上传文件的临时存储目录设置在"/tmp/spittr/uploads"中。
+				/*构造器能接收的参数除了临时路径的位置，其他的构造器所能接收的参数包括：
+				 * 1.上传文件的最大容量。默认没有限制；
+				 * 2.整个multipart请求的最大容量（以字节为单位），不会关心有多少个part以及每个part的大小。默认是没有限制的。
+				 * 3.在上传过程中，如果文件大小达到了一个指定最大容量（以字节为单位），将会写入到临时文件路径中。
+				 * 		默认值为0，也就是会将所有上传文件都会写入到磁盘上，
+				 */
 	}
 
 	/**

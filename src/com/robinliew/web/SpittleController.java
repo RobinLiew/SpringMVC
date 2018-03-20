@@ -55,7 +55,7 @@ public class SpittleController {
 	*/
 	
 	/**
-	 * 通过路径参数接收输入
+	 * 处理查询参数
 	 * 
 	 * 注意：对"/spittles/12345"发起GET请求要优于对"/spittles/show?spittle_id=12345"发起请求。
 	 * 前者能够识别要查询的资源，而后者描述的是带有参数的一个操作--本质上是通过HTTP发起的RPC。
@@ -71,7 +71,9 @@ public class SpittleController {
 	}
 	
 	/**
-	 * 上面所有的方法都映射到了（通过@RequestMapping）静态定义好的路径上。
+	 * 通过路径参数接受输入
+	 * 
+	 * 上面所有的方法都映射到了（通过@RequestMapping）静态定义好的路径上  。
 	 * 我们可以通过在@RequestMapping路径中添加占位符来增加变量部分.
 	 * 
 	 * 下面的例子就可以处理"/spittles/12345"这种路径

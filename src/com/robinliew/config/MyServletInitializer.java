@@ -1,11 +1,13 @@
 package com.robinliew.config;
 
 
+import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration.Dynamic;
 
 import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.servlet.DispatcherServlet;
 
 import com.robinliew.filter.MyFilter;
 import com.robinliew.servlet.MyServlet;
@@ -32,6 +34,12 @@ public class MyServletInitializer implements WebApplicationInitializer {
 		//添加Filter的映射路径
 		filter.addMappingForUrlPatterns(null, false, "/custom/**");
 		
+		/*基本的multipart配置*/
+		/*DispatcherServlet ds=new DispatcherServlet();
+		Dynamic registration=servletContext.addServlet("appServlet", ds);
+		registration.addMapping("/");
+		registration.setMultipartConfig(
+				new MultipartConfigElement("/tmp/spittr/uploads"));*/
 	}
 
 }
